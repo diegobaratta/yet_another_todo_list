@@ -1,0 +1,57 @@
+.tasks {
+    width: 80%;
+    height: 12em;
+    margin-top: 35px;
+    overflow: auto;
+}
+
+.tasks ul {
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;   
+    padding: 0;
+    margin: 0;     
+}
+
+.tasks ul li {
+    width: 100%;    
+    padding: 0.5em;
+}
+
+.taskTitle {
+    font-style: normal;
+    font-weight: 400;
+    font-size: .8em;
+    line-height: 29px;
+    color: #3E3B3B;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.taskTitle img {    
+    width: 20px;
+    height: 20px;
+    margin-right: 1em;
+    vertical-align: middle;
+    cursor: pointer;
+}
+
+.taskDesc {
+    font-style: normal;
+    font-weight: 400;
+    font-size: .7em;
+    line-height: 23px;
+    color: #3E3B3B;
+}
+
+.checked {
+    color: #C4C4C4;
+}
+
+.checked-tit {
+    text-decoration-line: line-through;
+}
+
+

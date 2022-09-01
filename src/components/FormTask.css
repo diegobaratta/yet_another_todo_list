@@ -1,0 +1,55 @@
+form {
+    width: 100%;
+    text-align: center;      
+}
+
+.form-group {
+    margin-top: 26px;
+}
+
+.form-group::placeholder {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 29px;
+    color: #3E3B3B;   
+}
+
+input {
+    position: relative;
+    width: 80%;
+    height: 41px;
+    background: #A8D2A5;
+    border-radius: 4px;
+    border: 0;   
+    padding: 6px 0 6px 16px;
+}
+
+textarea {
+    resize: none;
+    height: 124px;
+    width: 80%;
+    background: #A8D2A5;
+    border-radius: 4px;
+    border: 0;
+    padding: 6px 0 6px 16px;
+}
+
+button {
+    width: 80%;
+    height: 61px;
+    background: linear-gradient(90deg, #A8D2A5 0%, #ACD4E1 115.2%);
+    box-shadow: 0px 4px 4px #ACD4E1;
+    border: 0;
+    border-radius: 25px;
+    margin-top: 23px;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 29px;
+    color: #3E3B3B;
+}
+
+.placeHolderRed::placeholder { 
+    color: #BC0808;
+}
