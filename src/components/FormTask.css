@@ -1,55 +1,71 @@
 form {
-    width: 100%;
+    width: 90%;
     text-align: center;      
 }
 
 .form-group {
-    margin-top: 26px;
+    margin-top: 1.5em;
 }
 
-.form-group::placeholder {
-    font-style: normal;
-    font-weight: 400;
-    font-size: 18px;
-    line-height: 29px;
+input::placeholder, textarea::placeholder { 
+    font-size: .8em;   
     color: #3E3B3B;   
 }
 
-input {
-    position: relative;
-    width: 80%;
-    height: 41px;
+input {    
     background: #A8D2A5;
-    border-radius: 4px;
+    width: 90%;
+    height: 2em;
     border: 0;   
-    padding: 6px 0 6px 16px;
+    border-radius: 4px;
+    padding: .5em 0 .5em 1em;
+    font-size: 1.4em; 
 }
 
 textarea {
     resize: none;
-    height: 124px;
-    width: 80%;
     background: #A8D2A5;
-    border-radius: 4px;
+    width: 90%;
+    height: 9em;
     border: 0;
-    padding: 6px 0 6px 16px;
+    border-radius: 4px;
+    padding: .5em 0 .5em 1em;
+    font-size: 1.4em; 
 }
 
 button {
-    width: 80%;
-    height: 61px;
+    width: 90%;
+    height: 3.5em;
     background: linear-gradient(90deg, #A8D2A5 0%, #ACD4E1 115.2%);
     box-shadow: 0px 4px 4px #ACD4E1;
     border: 0;
     border-radius: 25px;
-    margin-top: 23px;
-    font-style: normal;
-    font-weight: 400;
-    font-size: 18px;
-    line-height: 29px;
+    margin-top: 1.5em;    
+    font-size: 1.2em;
     color: #3E3B3B;
 }
 
 .placeHolderRed::placeholder { 
     color: #BC0808;
+}
+
+@media (min-width: 600px) {
+    form {              
+        width: 100%;
+    }
+
+    input {
+        width: 100%;
+        border-radius: 0;
+    }
+
+    textarea {               
+        height: initial;
+        width: 100%;
+        border-radius: 0;
+    }
+
+    button {
+        width: 20%;
+    }
 }

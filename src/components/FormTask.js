@@ -37,8 +37,8 @@ const FormTask = () => {
 
             setPlaceHolders(prevState => ({
                 ...prevState,
-                placeholder1: "Por favor agregar descripción",
-                red1: true
+                placeholder2: "Por favor agregar descripción",
+                red2: true
             }))
 
             return false
@@ -46,6 +46,7 @@ const FormTask = () => {
 
         addTask(form)
         setForm({title: "", desc: ""})
+        setPlaceHolders({placeholder1: "Título", placeholder2: "Descripción", red1: false, red2: false})
 
     }
 

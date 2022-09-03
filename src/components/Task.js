@@ -2,8 +2,8 @@ import React from 'react'
 
 import checkIcon from '../assets/check-circle.png'
 import greenCheckIcon from '../assets/check-circle-green.png'
-import trashIcon from '../assets/trash-2-red.png'
-import editIcon from '../assets/edit-3.png'
+import trashIcon from '../assets/trash-red.png'
+import editIcon from '../assets/edit-green.png'
 
 const Task = ({data, methods}) => {
 
@@ -22,7 +22,7 @@ const Task = ({data, methods}) => {
                 </div>
             </div>
             <p className={`taskDesc ${data.checked && 'checked'}`}>
-            {data.title} Descripci&oacute;n: {data.desc}
+            {data.desc}
             </p>
         </div>
     )

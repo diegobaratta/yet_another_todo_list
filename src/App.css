@@ -7,6 +7,8 @@ body {
 }
 
 main {
+    position: relative;
+    height: 100vh;
     font-family: 'Monda';
     display: flex;
     flex-direction: column;    
@@ -19,9 +21,22 @@ main {
 main h1 {
     font-style: normal;
     font-weight: 700;
-    font-size: 40px;
-    line-height: 78px;
-    letter-spacing: 0.25em;
+    font-size: 2.4em;
+    letter-spacing: 0.1em;
     color: #000000;
     margin-bottom: 0;
+}
+
+@media (min-width: 600px) {
+    main {
+        background-image: url('./assets/bg-desk.png');  
+        background-size: 75%;
+        background-position: center -17em;
+        width: 90%;
+        margin: 0 auto;
+    }
+
+    main h1 {
+        font-size: 4.5em;
+    }
 }

@@ -3,10 +3,10 @@ import React from 'react'
 import "./Footbar.css"
 
 import alertIcon from '../assets/alert-circle.png'
-import formatIcon from '../assets/format-icon.png'
-import shareIcon from '../assets/share-2.png'
-import sortIcon from '../assets/sort-icon.png'
-import trashIcon from '../assets/trash-2.png'
+import formatIcon from '../assets/format.png'
+import shareIcon from '../assets/share.png'
+import sortIcon from '../assets/sort.png'
+import trashIcon from '../assets/trash.png'
 
 const Footbar = () => {
     return (
