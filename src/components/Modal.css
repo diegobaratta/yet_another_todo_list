@@ -1,0 +1,49 @@
+.modal {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: 'Monda';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 1.5em;
+    color: #3E3B3B;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #FFF;
+    z-index: 1000;
+    height: 30vh;
+    width: 85%;
+    padding: 1em;
+    text-align: center;
+    background-color: #AF7A7A;
+}
+
+.modal div {
+    display: flex;
+    justify-content: center;
+    gap: 1em;
+}
+
+.modalBtn {
+    font-size: .8em;
+    margin: 0;
+    width: 5em; 
+    height: 2.8em;   
+}
+
+.overlay{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.75);
+}
+
+@media (min-width: 600px) {
+    .modal {
+        width: 25%;
+    }
+}

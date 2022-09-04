@@ -53,10 +53,22 @@ const FormTask = () => {
     return (                
         <form onSubmit={handleSubmit}>
             <div className="form-group">                
-                <input className={placeHolders.red1 ? "placeHolderRed" : ""}  placeholder={placeHolders.placeholder1} id='title' name='title' value={form.title} onChange={handleChange} />
+                <input 
+                    className={placeHolders.red1 ? "placeHolderRed" : ""}  
+                    placeholder={placeHolders.placeholder1} 
+                    id='title' 
+                    name='title' 
+                    value={form.title} 
+                    onChange={handleChange} />
             </div>
             <div className="form-group">                
-                <textarea className={placeHolders.red2 ? "placeHolderRed" : ""}  placeholder={placeHolders.placeholder2} id='desc' name='desc' value={form.desc} onChange={handleChange} />
+                <textarea 
+                    className={placeHolders.red2 ? "placeHolderRed" : ""}  
+                    placeholder={placeHolders.placeholder2} 
+                    id='desc' 
+                    name='desc' 
+                    value={form.desc} 
+                    onChange={handleChange} />
             </div>
             <button type="submit">Agregar</button>
         </form>        

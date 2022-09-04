@@ -1,13 +1,18 @@
-import React from 'react'
+import React, {useContext}  from 'react'
+import { TasksContext } from '../context'
 
 import checkIcon from '../assets/check-circle.png'
 import greenCheckIcon from '../assets/check-circle-green.png'
 import trashIcon from '../assets/trash-red.png'
 import editIcon from '../assets/edit-green.png'
 
-const Task = ({data, methods}) => {
+const Task = ({data}) => {
+    
+    const {editTask, checkTask, removeTask, openModal, setOpenModal} = useContext(TasksContext)
 
-    const [editTask, checkTask, removeTask] = methods
+    function deleteTask() {                
+        setOpenModal(true)
+    }
     
     return (
         <div className='task'>
@@ -18,7 +23,7 @@ const Task = ({data, methods}) => {
                 </div>
                 <div>
                     <img src={editIcon} alt="Icono de editar tarea" onClick={() => editTask(data.id)} />
-                    <img src={trashIcon} alt="Icono de borrar tarea" onClick={() => removeTask(data.id)} />
+                    <img src={trashIcon} alt="Icono de borrar tarea" onClick={deleteTask} />
                 </div>
             </div>
             <p className={`taskDesc ${data.checked && 'checked'}`}>

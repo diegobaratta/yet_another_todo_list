@@ -4,7 +4,8 @@ import {nanoid} from "nanoid"
 const TasksContext = React.createContext({})
 
 function TasksContextProvider (props) {
-    const [tasks, setTasks] = useState([])   
+    const [tasks, setTasks] = useState([])  
+    const [openModal, setOpenModal] = useState(false)    
 
     function addTask(formData) {
         
@@ -36,11 +37,11 @@ function TasksContextProvider (props) {
     }
 
     function editTask(id){
-
+        setOpenModal(true)
     }
 
     return (
-        <TasksContext.Provider value={{tasks, addTask, removeTask, checkTask, editTask}}>
+        <TasksContext.Provider value={{tasks, addTask, removeTask, checkTask, editTask, openModal, setOpenModal}}>
             {props.children}
         </TasksContext.Provider>
     )
