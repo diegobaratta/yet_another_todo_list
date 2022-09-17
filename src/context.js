@@ -5,7 +5,7 @@ const TasksContext = React.createContext({})
 
 function TasksContextProvider (props) {
     const [tasks, setTasks] = useState([])  
-    const [openModal, setOpenModal] = useState(false)    
+    const [modal, setModal] = useState({opened: false, taskid: 0, type: 'none'})    
 
     function addTask(formData) {
         
@@ -21,10 +21,6 @@ function TasksContextProvider (props) {
 
     }
     
-    function removeTask(id){
-        setTasks(prevTasks => prevTasks.filter(task => task.id !== id))
-    }
-
     function checkTask(id){
         setTasks(prevTasks => (prevTasks.map(task => (
             task.id === id ?
@@ -33,15 +29,39 @@ function TasksContextProvider (props) {
                 checked: !task.checked
             } :
             task
-        ))))
+            ))))
     }
 
-    function editTask(id){
-        setOpenModal(true)
+    function editTask({id, title, desc}){
+        console.log(id, title, desc)
+        setTasks(prevTasks =>   (prevTasks.map(task => (
+                                    task.id === id ?
+                                    {
+                                        ...task,
+                                        title: title, 
+                                        desc: desc
+                                    } :
+                                    task
+                                    ))
+                                )
+                )
+        setModal({opened: false, taskid: 0, type: 'none'})
     }
+    
+    function removeTask(id){
+        setTasks(prevTasks => prevTasks.filter(task => task.id !== id))
+        setModal({opened: false, taskid: 0, type: 'none'})
+    }    
 
     return (
-        <TasksContext.Provider value={{tasks, addTask, removeTask, checkTask, editTask, openModal, setOpenModal}}>
+        <TasksContext.Provider value={{ tasks, 
+                                        addTask, 
+                                        removeTask, 
+                                        checkTask, 
+                                        editTask, 
+                                        modal, 
+                                        setModal
+                                    }}>
             {props.children}
         </TasksContext.Provider>
     )

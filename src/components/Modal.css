@@ -13,11 +13,30 @@
     transform: translate(-50%, -50%);
     background-color: #FFF;
     z-index: 1000;
-    height: 30vh;
     width: 85%;
     padding: 1em;
     text-align: center;
     background-color: #AF7A7A;
+    overflow: auto;
+}
+
+.modal p {
+    margin: 0;
+}
+
+.modal input {
+    margin: .5em 0;
+    padding: .5em;
+    font-size: .75em;
+    width: 100%;
+}
+
+.modal textarea {
+    height: 5em;
+    padding: .5em;
+    margin-bottom: .5em;
+    width: 100%;
+    font-size: .75em;
 }
 
 .modal div {
@@ -28,7 +47,7 @@
 
 .modalBtn {
     font-size: .8em;
-    margin: 0;
+    margin: 1em 0;
     width: 5em; 
     height: 2.8em;   
 }

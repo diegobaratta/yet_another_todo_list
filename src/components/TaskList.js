@@ -6,7 +6,7 @@ import Modal from './Modal'
 import "./TaskList.css"
 
 const TaskList = () => {
-    const {tasks, openModal} = useContext(TasksContext)
+    const {tasks, modal} = useContext(TasksContext)
 
     const taskGroup = tasks.map(task => {      
         return (            
@@ -21,7 +21,7 @@ const TaskList = () => {
             <ul>
                 {taskGroup}
             </ul>
-            <Modal open={openModal} type='DELETE' />
+            {modal.opened && <Modal />}
         </section>
     )
 }

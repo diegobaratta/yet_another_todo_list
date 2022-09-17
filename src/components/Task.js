@@ -8,10 +8,20 @@ import editIcon from '../assets/edit-green.png'
 
 const Task = ({data}) => {
     
-    const {editTask, checkTask, removeTask, openModal, setOpenModal} = useContext(TasksContext)
+    const {checkTask, setModal} = useContext(TasksContext)
 
-    function deleteTask() {                
-        setOpenModal(true)
+    function handleClick(e) { 
+
+        switch(e.target.name){
+            case 'editBtn':                                  
+                setModal({opened: true, taskid: data.id, type: 'EDIT'})        
+                break
+            case 'deleteBtn':
+                setModal({opened: true, taskid: data.id, type: 'DELETE'})        
+                break
+            default:
+                break
+        }
     }
     
     return (
@@ -22,8 +32,8 @@ const Task = ({data}) => {
                     <span className={data.checked ? 'checked checked-tit' : ''}>{data.title}</span>
                 </div>
                 <div>
-                    <img src={editIcon} alt="Icono de editar tarea" onClick={() => editTask(data.id)} />
-                    <img src={trashIcon} alt="Icono de borrar tarea" onClick={deleteTask} />
+                    <img src={editIcon} alt="Icono de editar tarea" name='editBtn' onClick={handleClick} />
+                    <img src={trashIcon} alt="Icono de borrar tarea" name='deleteBtn' onClick={handleClick} />
                 </div>
             </div>
             <p className={`taskDesc ${data.checked && 'checked'}`}>
