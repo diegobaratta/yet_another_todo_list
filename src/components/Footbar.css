@@ -21,6 +21,7 @@
 .listIcons img {
     height: 24px;
     width: 24px;
+    cursor: pointer;
 }
 
 @media (min-width: 600px) {

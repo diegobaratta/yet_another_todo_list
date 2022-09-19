@@ -15,7 +15,8 @@ function TasksContextProvider (props) {
                 id: nanoid(), 
                 checked: false,
                 title: formData.title, 
-                desc: formData.desc
+                desc: formData.desc,
+                date: new Date().getTime()
             }
         ]))
 
@@ -33,7 +34,7 @@ function TasksContextProvider (props) {
     }
 
     function editTask({id, title, desc}){
-        console.log(id, title, desc)
+        
         setTasks(prevTasks =>   (prevTasks.map(task => (
                                     task.id === id ?
                                     {
@@ -51,12 +52,18 @@ function TasksContextProvider (props) {
     function removeTask(id){
         setTasks(prevTasks => prevTasks.filter(task => task.id !== id))
         setModal({opened: false, taskid: 0, type: 'none'})
-    }    
+    } 
+    
+    function removeAllTasks(){
+        setTasks([])
+        setModal({opened: false, taskid: 0, type: 'none'})
+    }
 
     return (
         <TasksContext.Provider value={{ tasks, 
                                         addTask, 
                                         removeTask, 
+                                        removeAllTasks, 
                                         checkTask, 
                                         editTask, 
                                         modal, 
