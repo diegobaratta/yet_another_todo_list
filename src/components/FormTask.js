@@ -1,11 +1,13 @@
 import React, {useState, useContext} from 'react'
+import { useTranslation } from 'react-i18next'
 import { TasksContext } from '../context'
 
 import "./FormTask.css"
 
 const FormTask = () => {
+    const {t} = useTranslation()
     const [form, setForm] = useState({title: "", desc: ""})
-    const [placeHolders, setPlaceHolders] = useState({placeholder1: "Título", placeholder2: "Descripción", red1: false, red2: false})
+    const [placeHolders, setPlaceHolders] = useState({placeholder1: t("form-task.placeholder1"), placeholder2: t("form-task.placeholder2"), red1: false, red2: false})
     const {addTask} = useContext(TasksContext)
 
     function handleChange(e) {
@@ -26,7 +28,7 @@ const FormTask = () => {
 
             setPlaceHolders(prevState => ({
                 ...prevState,
-                placeholder1: "Por favor agregar título",
+                placeholder1: t("form-task.placeholder1-error"),
                 red1: true
             }))
 
@@ -37,7 +39,7 @@ const FormTask = () => {
 
             setPlaceHolders(prevState => ({
                 ...prevState,
-                placeholder2: "Por favor agregar descripción",
+                placeholder2: t("form-task.placeholder2-error"),
                 red2: true
             }))
 
@@ -46,7 +48,7 @@ const FormTask = () => {
 
         addTask(form)
         setForm({title: "", desc: ""})
-        setPlaceHolders({placeholder1: "Título", placeholder2: "Descripción", red1: false, red2: false})
+        setPlaceHolders({placeholder1: t("form-task.placeholder1"), placeholder2: t("form-task.placeholder2"), red1: false, red2: false})
 
     }
 
@@ -70,7 +72,7 @@ const FormTask = () => {
                     value={form.desc} 
                     onChange={handleChange} />
             </div>
-            <button type="submit">Agregar</button>
+            <button type="submit">{t("form-task.button")}</button>
         </form>        
     )
 }

@@ -1,0 +1,39 @@
+{
+    "title": "Mis Tareas",
+    "yes": "Si",
+    "no": "No",
+    "edit": "Edicion",
+    "form-task": {
+        "placeholder1": "Titulo",
+        "placeholder2": "Descripcion",
+        "placeholder1-error": "Agregar titulo por favor",
+        "placeholder2-error": "Agregar descripcion por favor",
+        "button": "Agregar"
+    },
+    "modal": {
+        "delete-task": "¿Desea borrar esta tarea?",
+        "delete-tasks": "¿Desea borrar todas las tareas?",
+        "edit-task": "Edicion de la tarea",
+        "select": "Seleccionar Orden",
+        "dateASC": "Vieja - Nueva",
+        "dateDESC": "Nueva - Vieja"
+    },
+    "task": {
+        "check-icon": "Icono de completar tarea",
+        "edit-icon": "Icono de editar tarea",
+        "del-icon": "Icono de borrar tarea"
+    },
+    "footbar": {
+        "alert-icon": "Icono de informacion",
+        "share-icon": "Icono de compartir",
+        "format-icon": "Icono de estilo",
+        "sort-icon": "Icono de ordenar",
+        "trash-icon": "Icono de borrar todas",
+        "alert": "Informacion",
+        "share": "Compartir",
+        "format": "Cambiar estilo",
+        "sort": "Ordenar lista",
+        "trash": "Borrar todas las tareas"
+    }
+}
+    

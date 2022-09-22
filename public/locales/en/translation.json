@@ -1,0 +1,39 @@
+{
+    "title": "My Tasks",
+    "yes": "Yes",
+    "no": "No",
+    "edit": "Edit",
+    "form-task": {
+        "placeholder1": "Title",
+        "placeholder2": "Description",
+        "placeholder1-error": "Add a title please",
+        "placeholder2-error": "Add a description please",
+        "button": "Add"
+    },
+    "modal": {
+        "delete-task": "Do you want to delete this item?",
+        "delete-tasks": "Do you want to delete all the tasks?",
+        "edit-task": "Task edition",
+        "select": "Select order",
+        "dateASC": "Old - New",
+        "dateDESC": "New - Old"
+    },
+    "task": {
+        "check-icon": "Complete task icon",
+        "edit-icon": "Edit task icon",
+        "del-icon": "Delete task icon"
+    },
+    "footbar": {
+        "alert-icon": "Information icon",
+        "share-icon": "Sharing icon",
+        "format-icon": "Style icon",
+        "sort-icon": "Sorting icon",
+        "trash-icon": "Delete all tasks icon",
+        "alert": "Information",
+        "share": "Share",
+        "format": "Change style",
+        "sort": "Sort list",
+        "trash": "Delete all tasks"
+    }
+}
+    

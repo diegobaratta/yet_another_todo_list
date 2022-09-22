@@ -1,5 +1,6 @@
 import React, {useContext, useState} from 'react'
 import ReactDOM from "react-dom"
+import { useTranslation } from 'react-i18next'
 
 import { TasksContext } from '../context'
 
@@ -7,9 +8,10 @@ import "./Modal.css"
 
 const Modal = () => {   
 
-    const {tasks, modal, setModal, removeTask, removeAllTasks, editTask} = useContext(TasksContext)  
+    const {tasks, modal, setModal, removeTask, removeAllTasks, editTask, sortTasks} = useContext(TasksContext)  
     const task = modal.taskid ? tasks.find(task => task.id === modal.taskid) : {id: 0, title: '', desc: ''}   
     const [editForm, setEditForm] = useState({id: task.id, title: task.title, desc: task.desc}) 
+    const {t} = useTranslation()
 
     let modalBody;
     
@@ -41,19 +43,19 @@ const Modal = () => {
     switch(modal.type){
         case 'DELETE':
             modalBody = <>           
-                            <p>¿Realmente desea borrar la tarea?</p>           
+                            <p>{t("modal.delete-task")}</p>           
                             <div>
-                                <button className='modalBtn' name="yesDel" onClick={handleClick}>Si</button>
-                                <button className='modalBtn' name="noDel"  onClick={handleClick}>No</button>
+                                <button className='modalBtn' name="yesDel" onClick={handleClick}>{t("yes")}</button>
+                                <button className='modalBtn' name="noDel"  onClick={handleClick}>{t("no")}</button>
                             </div>                         
                         </>            
             break
         case 'DELETEALL':
             modalBody = <>           
-                            <p>¿Realmente desea borrar todas las tareas?</p>
+                            <p>{t("modal.delete-tasks")}</p>
                             <div>
-                                <button className='modalBtn' name="yesDelAll" onClick={handleClick}>Si</button>
-                                <button className='modalBtn' name="noDel"  onClick={handleClick}>No</button>
+                                <button className='modalBtn' name="yesDelAll" onClick={handleClick}>{t("yes")}</button>
+                                <button className='modalBtn' name="noDel"  onClick={handleClick}>{t("no")}</button>
                             </div>                         
                         </>            
             break
@@ -72,7 +74,7 @@ const Modal = () => {
             
             modalBody = <>                                 
                             <form>  
-                                <p>Edici&oacute;n de tarea</p>    
+                                <p>{t("modal.edit-task")}</p>    
                                 <input                                         
                                     id='title' 
                                     name='title' 
@@ -85,26 +87,24 @@ const Modal = () => {
                                     onChange={handleChange} />
                             </form>
                             <div>
-                                <button className='modalBtn' name="edit" onClick={handleClick}>Editar</button>
+                                <button className='modalBtn' name="edit" onClick={handleClick}>{t("edit")}</button>
                             </div>                         
                         </>
             break
         case 'SORT':                                            
             
             function handleSort(e) {
-                
-                
-                
+                sortTasks(e.target.value)
             } 
             
             modalBody = <>  
                             <div>
-                                <select onchange={handleSort}>
-                                    <option value=''>Seleccionar orden</option>
+                                <select onChange={handleSort}>
+                                    <option value=''>{t("modal.select")}</option>
                                     <option value='alphAsc'>A - Z</option>
                                     <option value='alphDesc'>Z - A</option>
-                                    <option value='dateAsc'>Vieja - Nueva</option>
-                                    <option value='dateDesc'>Nueva - Vieja</option>
+                                    <option value='dateAsc'>{t("modal.dateASC")}</option>
+                                    <option value='dateDesc'>{t("modal.dateDESC")}</option>
                                 </select>
                             </div>                         
                         </>

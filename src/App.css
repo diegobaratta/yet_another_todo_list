@@ -13,7 +13,7 @@ main {
     display: flex;
     flex-direction: column;    
     align-items: center;
-    background-image: url('./assets/bg-over.png'), url('./assets/bg-back.png');  
+    background-image: url('./assets/images/bg-over.png'), url('./assets/images/bg-back.png');  
     background-repeat: no-repeat;
     background-size: 100%;
 }
@@ -24,12 +24,13 @@ main h1 {
     font-size: 2.4em;
     letter-spacing: 0.1em;
     color: #000000;
+    margin-top: 2em;
     margin-bottom: 0;
 }
 
 @media (min-width: 600px) {
     main {
-        background-image: url('./assets/bg-desk.png');  
+        background-image: url('./assets/images/bg-desk.png');  
         background-size: 75%;
         background-position: center -17em;
         width: 90%;
@@ -38,5 +39,9 @@ main h1 {
 
     main h1 {
         font-size: 4.5em;
+    }
+
+    [type=radio] + img {
+        width: 50px;
     }
 }
