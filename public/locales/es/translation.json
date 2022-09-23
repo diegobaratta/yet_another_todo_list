@@ -4,10 +4,10 @@
     "no": "No",
     "edit": "Edicion",
     "form-task": {
-        "placeholder1": "Titulo",
-        "placeholder2": "Descripcion",
-        "placeholder1-error": "Agregar titulo por favor",
-        "placeholder2-error": "Agregar descripcion por favor",
+        "input1": "Titulo",
+        "input2": "Descripcion",
+        "input1-error": "Agregar titulo por favor",
+        "input2-error": "Agregar descripcion por favor",
         "button": "Agregar"
     },
     "modal": {

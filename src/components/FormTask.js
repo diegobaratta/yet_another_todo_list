@@ -6,8 +6,8 @@ import "./FormTask.css"
 
 const FormTask = () => {
     const {t} = useTranslation()
-    const [form, setForm] = useState({title: "", desc: ""})
-    const [placeHolders, setPlaceHolders] = useState({placeholder1: t("form-task.placeholder1"), placeholder2: t("form-task.placeholder2"), red1: false, red2: false})
+    const [form, setForm] = useState({title: "", desc: ""})    
+    const [inputErrors, setInputErrors] = useState({input1: 0, input2: 0})
     const {addTask} = useContext(TasksContext)
 
     function handleChange(e) {
@@ -25,52 +25,72 @@ const FormTask = () => {
         e.preventDefault()
 
         if(form.title === ""){
-
-            setPlaceHolders(prevState => ({
+            setInputErrors(prevState => ({
                 ...prevState,
-                placeholder1: t("form-task.placeholder1-error"),
-                red1: true
+                input1: 1
             }))
-
+            
             return false
         }
 
         if(form.desc === ""){
-
-            setPlaceHolders(prevState => ({
+            setInputErrors(prevState => ({
                 ...prevState,
-                placeholder2: t("form-task.placeholder2-error"),
-                red2: true
-            }))
+                input2: 1
+            }))            
 
             return false
         }
 
         addTask(form)
-        setForm({title: "", desc: ""})
-        setPlaceHolders({placeholder1: t("form-task.placeholder1"), placeholder2: t("form-task.placeholder2"), red1: false, red2: false})
+        setForm({title: "", desc: ""})        
 
+    }
+
+    function handleFocus(e){
+        switch(e.target.name){
+            case 'title':
+                setInputErrors(prevState => ({
+                    ...prevState,
+                    input1: 0
+                })) 
+                break;
+            case 'desc':
+                setInputErrors(prevState => ({
+                    ...prevState,
+                    input2: 0
+                })) 
+                break;
+            default: 
+                break;
+        }
     }
 
     return (                
         <form onSubmit={handleSubmit}>
-            <div className="form-group">                
+            <div className="form-group">     
+                <label htmlFor='title'>
+                    {t("form-task.input1")}
+                </label>           
                 <input 
-                    className={placeHolders.red1 ? "placeHolderRed" : ""}  
-                    placeholder={placeHolders.placeholder1} 
                     id='title' 
                     name='title' 
-                    value={form.title} 
+                    value={form.title}
+                    onFocus={handleFocus} 
                     onChange={handleChange} />
+                <div class={`errorInput ${inputErrors.input1 === 0 ? 'hidden' : ''}`}>{t("form-task.input1-error")}</div>    
             </div>
-            <div className="form-group">                
+            <div className="form-group">    
+                <label htmlFor='desc'>
+                    {t("form-task.input2")}
+                </label>                  
                 <textarea 
-                    className={placeHolders.red2 ? "placeHolderRed" : ""}  
-                    placeholder={placeHolders.placeholder2} 
                     id='desc' 
                     name='desc' 
                     value={form.desc} 
+                    onFocus={handleFocus} 
                     onChange={handleChange} />
+                <div class={`errorInput ${inputErrors.input2 === 0 ? 'hidden' : ''}`}>{t("form-task.input2-error")}</div>    
             </div>
             <button type="submit">{t("form-task.button")}</button>
         </form>        
