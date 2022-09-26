@@ -17,8 +17,8 @@
         "delete-tasks": "Do you want to delete all the tasks?",
         "edit-task": "Task edition",
         "select": "Select order",
-        "dateASC": "Old - New",
-        "dateDESC": "New - Old"
+        "dateASC": "Older - Newer",
+        "dateDESC": "Newer - Older"
     },
     "task": {
         "check-icon": "Complete task icon",
