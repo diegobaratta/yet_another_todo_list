@@ -79,8 +79,8 @@ function TasksContextProvider (props) {
                 break;
         }
         console.log(mergeSort(tasks, compareFunc, type))
-        // setTasks(mergeSort(tasks, compareFunc, type))mergeSort(tasks, compareFunc, type)
-        setModal({opened: false, taskid: 0, type: 'none'})
+        // setTasks(mergeSort(tasks, compareFunc, type))
+        // setModal({opened: false, taskid: 0, type: 'none'})
     }
 
     let defaultCompare = (a, b) => (a > b ? 1 : a < b ? -1 : 0)
@@ -101,20 +101,20 @@ function TasksContextProvider (props) {
         //Combine
         let i = 0, j = 0
         let sorted = []
-
+        
         for (let k = 0; k < length; k++){
             
-            let comp1, comp2
-
-            if(type === "alphAsc" || type === "alphDesc"){
-                comp1 = left[i].title
-                comp2 = right[j].title
+            let comp1, comp2            
+            
+            if(type === "alphAsc" || type === "alphDesc"){                
+                comp1 = left[i]?.title
+                comp2 = right[j]?.title
             }else{
-                comp1 = left[i].date
-                comp2 = right[j].date
+                comp1 = left[i]?.date
+                comp2 = right[j]?.date
             }
-
-            if(i < left.length && compare(comp1, comp2) <= 0){
+            
+            if(i < left.length && compare(comp1, comp2) <= 0){                
                 sorted.push(left[i])
                 i++
             } else {

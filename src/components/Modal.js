@@ -88,25 +88,28 @@ const Modal = () => {
                             </form>
                             <div>
                                 <button className='modalBtn' name="edit" onClick={handleClick}>{t("edit")}</button>
+                                <button className='modalBtn' name="close" onClick={handleClick}>{t("close")}</button>
                             </div>                         
                         </>
             break
-        case 'SORT':                                            
+            case 'SORT':                                            
             
             function handleSort(e) {
                 sortTasks(e.target.value)
             } 
             
             modalBody = <>  
-                            <div>
-                                <select onChange={handleSort}>
-                                    <option value=''>{t("modal.select")}</option>
-                                    <option value='alphAsc'>A - Z</option>
-                                    <option value='alphDesc'>Z - A</option>
-                                    <option value='dateAsc'>{t("modal.dateASC")}</option>
-                                    <option value='dateDesc'>{t("modal.dateDESC")}</option>
-                                </select>
-                            </div>                         
+                            <p>{t("modal.order-tasks")}</p>    
+                            <select onChange={handleSort}>
+                                <option value=''>{t("modal.select")}</option>
+                                <option value='alphAsc'>A - Z</option>
+                                <option value='alphDesc'>Z - A</option>
+                                <option value='dateAsc'>{t("modal.dateASC")}</option>
+                                <option value='dateDesc'>{t("modal.dateDESC")}</option>
+                            </select>
+                            <div>                                    
+                                <button className='modalBtn' name="close" onClick={handleClick}>{t("close")}</button>
+                            </div>  
                         </>
             break
         default:

@@ -67,8 +67,15 @@ select, option {
     font-weight: 400;
     font-size: 1em;
     line-height: 2em;
-    color: #3C3C43;
-    
+    color: #3C3C43;    
+}
+
+select {
+    margin: .5em 0;
+    width: 100%;
+    border: 0;
+    padding: .5em;
+    border-radius: .5em;
 }
 
 @media (min-width: 600px) {

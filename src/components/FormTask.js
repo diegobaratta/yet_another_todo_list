@@ -78,7 +78,7 @@ const FormTask = () => {
                     value={form.title}
                     onFocus={handleFocus} 
                     onChange={handleChange} />
-                <div class={`errorInput ${inputErrors.input1 === 0 ? 'hidden' : ''}`}>{t("form-task.input1-error")}</div>    
+                <div className={`errorInput ${inputErrors.input1 === 0 ? 'hidden' : ''}`}>{t("form-task.input1-error")}</div>    
             </div>
             <div className="form-group">    
                 <label htmlFor='desc'>
@@ -90,7 +90,7 @@ const FormTask = () => {
                     value={form.desc} 
                     onFocus={handleFocus} 
                     onChange={handleChange} />
-                <div class={`errorInput ${inputErrors.input2 === 0 ? 'hidden' : ''}`}>{t("form-task.input2-error")}</div>    
+                <div className={`errorInput ${inputErrors.input2 === 0 ? 'hidden' : ''}`}>{t("form-task.input2-error")}</div>    
             </div>
             <button type="submit">{t("form-task.button")}</button>
         </form>        
