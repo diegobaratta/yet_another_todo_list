@@ -1,8 +1,11 @@
-import React, {useContext, useState} from 'react'
+import React, {useContext, useRef, useState} from 'react'
 import ReactDOM from "react-dom"
 import { useTranslation } from 'react-i18next'
 
 import { TasksContext } from '../context'
+
+import arrowUp from '../assets/images/arrow-top.png'
+import arrowDown from '../assets/images/arrow-down.png'
 
 import "./Modal.css"
 
@@ -12,6 +15,8 @@ const Modal = () => {
     const task = modal.taskid ? tasks.find(task => task.id === modal.taskid) : {id: 0, title: '', desc: ''}   
     const [editForm, setEditForm] = useState({id: task.id, title: task.title, desc: task.desc}) 
     const {t} = useTranslation()
+    const optionsRef = useRef()
+    const arrowImgRef = useRef()
 
     let modalBody;
     
@@ -92,21 +97,34 @@ const Modal = () => {
                             </div>                         
                         </>
             break
-            case 'SORT':                                            
-            
+        case 'SORT':
+
             function handleSort(e) {
-                sortTasks(e.target.value)
-            } 
+                sortTasks(e.target.id)
+            }
+
+            function openOptions() {
+                if(optionsRef.current.classList.contains('hidden')){
+                    arrowImgRef.current.src = arrowUp
+                    optionsRef.current.classList.remove("hidden")
+                }else{
+                    arrowImgRef.current.src = arrowDown
+                    optionsRef.current.classList.add("hidden")
+                }
+            }
             
             modalBody = <>  
-                            <p>{t("modal.order-tasks")}</p>    
-                            <select onChange={handleSort}>
-                                <option value=''>{t("modal.select")}</option>
-                                <option value='alphAsc'>A - Z</option>
-                                <option value='alphDesc'>Z - A</option>
-                                <option value='dateAsc'>{t("modal.dateASC")}</option>
-                                <option value='dateDesc'>{t("modal.dateDESC")}</option>
-                            </select>
+                            <p>{t("modal.order-tasks")}</p>
+                            <div className='selectBox' onClick={openOptions}>
+                                <h5>{t("modal.select")}</h5>
+                                <img ref={arrowImgRef} className='arrow' src={arrowDown} alt={t("footbar.sort-arrow")} />
+                            </div>    
+                            <ul className='options hidden' ref={optionsRef}>
+                                <li id='alphAsc' onClick={handleSort}>A - Z</li>
+                                <li id='alphDesc' onClick={handleSort}>Z - A</li>
+                                <li id='dateAsc' onClick={handleSort}>{t("modal.dateASC")}</li>
+                                <li id='dateDesc' onClick={handleSort}>{t("modal.dateDESC")}</li>
+                            </ul>
                             <div>                                    
                                 <button className='modalBtn' name="close" onClick={handleClick}>{t("close")}</button>
                             </div>  

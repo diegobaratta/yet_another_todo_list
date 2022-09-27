@@ -6,7 +6,7 @@ import "./Footbar.css"
 
 // import alertIcon from '../assets/images/alert-circle.png'
 // import formatIcon from '../assets/images/format.png'
-import shareIcon from '../assets/images/share.png'
+// import shareIcon from '../assets/images/share.png'
 import sortIcon from '../assets/images/sort.png'
 import trashIcon from '../assets/images/trash.png'
 
@@ -43,7 +43,7 @@ const Footbar = () => {
         <footer className='footbar'>
           <ul className='listIcons'>
             {/* <li><img src={alertIcon} alt={t("footbar.alert-icon")} title={t("footbar.alert")} name='alert' onClick={handleClick} /></li> */}
-            <li><img src={shareIcon} alt={t("footbar.share-icon")} title={t("footbar.share")} name='share' onClick={handleClick} /></li>
+            {/* <li><img src={shareIcon} alt={t("footbar.share-icon")} title={t("footbar.share")} name='share' onClick={handleClick} /></li> */}
             {/* <li><img src={formatIcon} alt={t("footbar.format-icon")} title={t("footbar.format")} name='format' onClick={handleClick} /></li> */}
             <li><img src={sortIcon} alt={t("footbar.sort-icon")} title={t("footbar.sort")} name='sort' onClick={handleClick} /></li>
             <li><img src={trashIcon} alt={t("footbar.trash-icon")} title={t("footbar.trash")} name='delete' onClick={handleClick} /></li>

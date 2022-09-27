@@ -18,7 +18,8 @@
         "edit-task": "Edicion de la tarea",
         "select": "Seleccionar Orden",
         "dateASC": "Vieja - Nueva",
-        "dateDESC": "Nueva - Vieja"
+        "dateDESC": "Nueva - Vieja",
+        "sort-arrow": "Flecha de elemento select"
     },
     "task": {
         "check-icon": "Icono de completar tarea",

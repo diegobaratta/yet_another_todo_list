@@ -18,7 +18,8 @@
         "edit-task": "Task edition",
         "select": "Select order",
         "dateASC": "Older - Newer",
-        "dateDESC": "Newer - Older"
+        "dateDESC": "Newer - Older",
+        "sort-arrow": "Select box arrow"
     },
     "task": {
         "check-icon": "Complete task icon",
