@@ -1,5 +1,4 @@
 import React, {useState, useEffect, createContext, useReducer} from "react"
-import {nanoid} from "nanoid"
 
 const TasksContext = createContext()
 
@@ -59,9 +58,7 @@ function taskReducer(state, action) {
 }
 
 function TasksContextProvider (props) {
-    const [tasks2, setTasks] = useState([])  
-    const [modal, setModal] = useState({opened: false, taskid: 0, type: 'none'})    
-    const [error, setError] = useState(null)
+    const [modal, setModal] = useState({opened: false, taskid: 0, type: 'none'})   
     const [tasks, dispatch] = useReducer(taskReducer, [])
 
     //Downloading all tasks in DB
@@ -91,10 +88,7 @@ function TasksContextProvider (props) {
 
         const json = await response.json()
 
-        if(!response.ok){
-            setError(json.error)
-        }else{
-            setError(null)            
+        if(response.ok){                     
             dispatch({type: 'CREATE_TASK', payload: json})
         }    
     }    
@@ -171,28 +165,9 @@ function TasksContextProvider (props) {
         setModal({opened: false, taskid: 0, type: 'none'})
     }
 
-    //TODO: Sorting the tasks by criteria
-    function sortTasks(type) {    
-        
-        dispatch({type: 'SORT_TASKS', payload: type})  
-
-        switch(type){
-            case "alphAsc":
-                setTasks(tasks.sort((a, b) => (a.title < b.title ? -1 : a.title > b.title ? 1 : 0)))   
-                break;                
-            case "alphDesc":
-                setTasks(tasks.sort((a, b) => (a.title > b.title ? -1 : a.title < b.title ? 1 : 0)))   
-                break;
-            case "dateAsc":
-                setTasks(tasks.sort((a, b) => (a.date < b.date ? -1 : a.date > b.date ? 1 : 0)))   
-                break;
-            case "dateDesc":
-                setTasks(tasks.sort((a, b) => (a.date > b.date ? -1 : a.date < b.date ? 1 : 0)))   
-                break;
-            default:
-                break;
-        }       
-     
+    //Sorting the tasks by criteria
+    function sortTasks(type) {            
+        dispatch({type: 'SORT_TASKS', payload: type})             
         setModal({opened: false, taskid: 0, type: 'none'})
     }
 
@@ -205,9 +180,7 @@ function TasksContextProvider (props) {
                                         editTask,
                                         sortTasks, 
                                         modal, 
-                                        setModal,
-                                        // state,
-                                        dispatch,
+                                        setModal
                                     }}>
             {props.children}
         </TasksContext.Provider>

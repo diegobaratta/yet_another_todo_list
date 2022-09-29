@@ -22,12 +22,12 @@ const LanguageSelection = () => {
             <img src={translation} alt="Icono de traducci&oacute;n" />
             <div className='flags'>
                 <label>
-                    <input type="radio" name="lang" value="es" defaultChecked />
+                    <input type="radio" name="lang" value="es" {...(localStorage.getItem("lng") === 'es' && { defaultChecked: true })} />
                     <img src={spanish} alt="Opcion ES" onClick={() => handleChangeLng('es')} />
                 </label>
 
                 <label>
-                    <input type="radio" name="lang" value="en" />
+                    <input type="radio" name="lang" value="en" {...(localStorage.getItem("lng") === 'en' && { defaultChecked: true })} />
                     <img src={english} alt="Opcion EN" onClick={() => handleChangeLng('en')} />
                 </label>
             </div>
