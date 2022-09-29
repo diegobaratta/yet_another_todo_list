@@ -1,29 +1,67 @@
-import React, {useState} from "react"
+import React, {useState, useEffect, createContext, useReducer} from "react"
 import {nanoid} from "nanoid"
 
-const TasksContext = React.createContext({})
+const TasksContext = createContext()
+
+function taskReducer(state, action) {    
+    switch(action.type) {
+        case "SET_TASKS":
+            return action.payload
+        case "CREATE_TASK":
+            return [...state, action.payload]
+        case "DELETE_TASK":
+            return state.filter(task => task._id !== action.payload._id)
+        default:
+            return state
+    }
+}
 
 function TasksContextProvider (props) {
-    const [tasks, setTasks] = useState([])  
+    const [tasks2, setTasks] = useState([])  
     const [modal, setModal] = useState({opened: false, taskid: 0, type: 'none'})    
+    const [error, setError] = useState(null)
+    const [tasks, dispatch] = useReducer(taskReducer, [])
 
-    function addTask(formData) {
-        
-        setTasks(prevTasks => ([
-            ...prevTasks,
-            {
-                id: nanoid(), 
-                checked: false,
-                title: formData.title, 
-                desc: formData.desc,
-                date: new Date().getTime()
+    //Downloading all tasks in DB
+    useEffect(() => {
+        const fetchTasks = async () => {
+            const response = await fetch("/api/tasks")
+            const json = await response.json()
+            
+            if (response.ok){
+                dispatch({type: 'SET_TASKS', payload: json})
             }
-        ]))
-    }
-    
+        }
+
+        fetchTasks()
+    }, [])
+
+    //Adding new task
+    async function addTask(formData) {
+
+        const response = await fetch("/api/tasks", {
+            method: "POST",
+            body: JSON.stringify(formData),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+
+        const json = await response.json()
+
+        if(!response.ok){
+            setError(json.error)
+        }else{
+            setError(null)
+            console.log("New task added", json)
+            dispatch({type: 'CREATE_TASK', payload: json})
+        }    
+    }    
+
+    //TODO: Checking task as ready 
     function checkTask(id){
         setTasks(prevTasks => (prevTasks.map(task => (
-            task.id === id ?
+            task._id === id ?
             {
                 ...task,
                 checked: !task.checked
@@ -32,10 +70,11 @@ function TasksContextProvider (props) {
             ))))
     }
 
+    //TODO: Editing task 
     function editTask({id, title, desc}){
         
         setTasks(prevTasks =>   (prevTasks.map(task => (
-                                    task.id === id ?
+                                    task._id === id ?
                                     {
                                         ...task,
                                         title: title, 
@@ -48,16 +87,29 @@ function TasksContextProvider (props) {
         setModal({opened: false, taskid: 0, type: 'none'})
     }
     
-    function removeTask(id){
-        setTasks(prevTasks => prevTasks.filter(task => task.id !== id))
+    //Removing task
+    async function removeTask(id){
+        const response = await fetch("/api/tasks/" + id, {
+            method: "DELETE"
+        })
+
+        const json = await response.json()
+
+        if(response.ok){
+            dispatch({type: 'DELETE_TASK', payload: json})
+        }
+
+        // setTasks(prevTasks => prevTasks.filter(task => task._id !== id))
         setModal({opened: false, taskid: 0, type: 'none'})
     } 
     
+    //TODO: Removing all the tasks 
     function removeAllTasks(){
         setTasks([])
         setModal({opened: false, taskid: 0, type: 'none'})
     }
 
+    //TODO: Sorting the tasks by criteria
     function sortTasks(type) {        
 
         switch(type){
@@ -89,7 +141,9 @@ function TasksContextProvider (props) {
                                         editTask,
                                         sortTasks, 
                                         modal, 
-                                        setModal
+                                        setModal,
+                                        // state,
+                                        dispatch,
                                     }}>
             {props.children}
         </TasksContext.Provider>

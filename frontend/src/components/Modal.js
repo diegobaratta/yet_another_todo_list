@@ -12,8 +12,8 @@ import "./Modal.css"
 const Modal = () => {   
 
     const {tasks, modal, setModal, removeTask, removeAllTasks, editTask, sortTasks} = useContext(TasksContext)  
-    const task = modal.taskid ? tasks.find(task => task.id === modal.taskid) : {id: 0, title: '', desc: ''}   
-    const [editForm, setEditForm] = useState({id: task.id, title: task.title, desc: task.desc}) 
+    const task = modal.taskid ? tasks.find(task => task._id === modal.taskid) : {id: 0, title: '', desc: ''}   
+    const [editForm, setEditForm] = useState({id: task._id, title: task.title, desc: task.desc}) 
     const {t} = useTranslation()
     const optionsRef = useRef()
     const arrowImgRef = useRef()

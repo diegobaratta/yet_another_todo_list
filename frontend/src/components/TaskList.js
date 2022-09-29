@@ -7,10 +7,10 @@ import "./TaskList.css"
 
 const TaskList = () => {
     const {tasks, modal} = useContext(TasksContext)
-
+    
     const taskGroup = tasks.map(task => {      
         return (            
-            <li key={task.id}>
+            <li key={task._id}>
                 <Task data={task} />
             </li>
         )

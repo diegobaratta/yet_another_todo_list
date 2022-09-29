@@ -16,10 +16,10 @@ const Task = ({data}) => {
 
         switch(e.target.name){
             case 'editBtn':                                  
-                setModal({opened: true, taskid: data.id, type: 'EDIT'})        
+                setModal({opened: true, taskid: data._id, type: 'EDIT'})        
                 break
             case 'deleteBtn':
-                setModal({opened: true, taskid: data.id, type: 'DELETE'})        
+                setModal({opened: true, taskid: data._id, type: 'DELETE'})        
                 break
             default:
                 break
@@ -30,7 +30,7 @@ const Task = ({data}) => {
         <div className='task'>
             <div className='taskTitle'>
                 <div>
-                    <img src={data.checked ? greenCheckIcon : checkIcon} alt={t("task.check-icon")} onClick={() => checkTask(data.id)} />
+                    <img src={data.checked ? greenCheckIcon : checkIcon} alt={t("task.check-icon")} onClick={() => checkTask(data._id)} />
                     <span className={data.checked ? 'checked checked-tit' : ''}>{data.title}</span>
                 </div>
                 <div>
