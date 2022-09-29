@@ -4,6 +4,7 @@ const {
     getAllTasks,
     getTask,
     deleteTask,
+    deleteAllTasks,
     updateTask
 } = require("../controllers/taskController")
 
@@ -20,6 +21,9 @@ router.post("/", createTask)
 
 //DELETE a task
 router.delete("/:id", deleteTask)
+
+//DELETE all the tasks
+router.delete("/", deleteAllTasks)
 
 //UPDATE a task
 router.patch("/:id", updateTask)

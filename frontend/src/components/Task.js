@@ -30,7 +30,7 @@ const Task = ({data}) => {
         <div className='task'>
             <div className='taskTitle'>
                 <div>
-                    <img src={data.checked ? greenCheckIcon : checkIcon} alt={t("task.check-icon")} onClick={() => checkTask(data._id)} />
+                    <img src={data.checked ? greenCheckIcon : checkIcon} alt={t("task.check-icon")} onClick={() => checkTask(data._id, !data.checked)} />
                     <span className={data.checked ? 'checked checked-tit' : ''}>{data.title}</span>
                 </div>
                 <div>

@@ -55,6 +55,14 @@ const deleteTask = async (req, res) => {
     res.status(200).json(task)
 }
 
+//Delete all the tasks
+const deleteAllTasks = async (req, res) => {        
+    
+    const task = await Task.deleteMany({})
+
+    res.status(200).json(task)
+}
+
 //Update a task
 const updateTask = async (req, res) => {
     const { id } = req.params
@@ -78,5 +86,6 @@ module.exports = {
     getAllTasks,
     getTask,
     deleteTask,
+    deleteAllTasks,
     updateTask
 }

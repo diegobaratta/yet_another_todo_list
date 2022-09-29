@@ -11,6 +11,48 @@ function taskReducer(state, action) {
             return [...state, action.payload]
         case "DELETE_TASK":
             return state.filter(task => task._id !== action.payload._id)
+        case "CHECK_TASK":
+            return state.map(task => (
+                task._id === action.payload._id ?
+                {
+                    ...task,
+                    checked: !task.checked
+                } :
+                task
+            ))
+        case "EDIT_TASK":
+            return state.map(task => (
+                task._id === action.payload.id ?
+                {
+                    ...task,
+                    title: action.payload.title, 
+                    desc: action.payload.desc
+                } :
+                task
+            ))
+        case "DELETE_ALL_TASKS":
+            return []
+        case "SORT_TASKS":
+            let sorted = []
+            
+            switch(action.payload){
+                case "alphAsc":
+                    sorted = state.sort((a, b) => (a.title < b.title ? -1 : a.title > b.title ? 1 : 0))
+                    break;                
+                case "alphDesc":
+                    sorted = state.sort((a, b) => (a.title > b.title ? -1 : a.title < b.title ? 1 : 0)) 
+                    break;
+                case "dateAsc":
+                    sorted = state.sort((a, b) => (a.createdAt < b.createdAt ? -1 : a.createdAt > b.createdAt ? 1 : 0))
+                    break;
+                case "dateDesc":
+                    sorted = state.sort((a, b) => (a.createdAt > b.createdAt ? -1 : a.createdAt < b.createdAt ? 1 : 0))
+                    break;
+                default:
+                    break;
+            }
+            
+            return sorted
         default:
             return state
     }
@@ -52,38 +94,49 @@ function TasksContextProvider (props) {
         if(!response.ok){
             setError(json.error)
         }else{
-            setError(null)
-            console.log("New task added", json)
+            setError(null)            
             dispatch({type: 'CREATE_TASK', payload: json})
         }    
     }    
 
-    //TODO: Checking task as ready 
-    function checkTask(id){
-        setTasks(prevTasks => (prevTasks.map(task => (
-            task._id === id ?
-            {
-                ...task,
-                checked: !task.checked
-            } :
-            task
-            ))))
+    //Checking task as ready 
+    async function checkTask(id, value){
+
+        const response = await fetch("/api/tasks/" + id, {
+            method: "PATCH",
+            body: JSON.stringify({"checked": value}),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+
+        const json = await response.json()
+
+        if(response.ok)
+            dispatch({type: 'CHECK_TASK', payload: json})  
     }
 
-    //TODO: Editing task 
-    function editTask({id, title, desc}){
-        
-        setTasks(prevTasks =>   (prevTasks.map(task => (
-                                    task._id === id ?
-                                    {
-                                        ...task,
-                                        title: title, 
-                                        desc: desc
-                                    } :
-                                    task
-                                    ))
-                                )
-                )
+    //Editing task 
+    async function editTask({id, title, desc}){
+
+        const response = await fetch("/api/tasks/" + id, {
+            method: "PATCH",
+            body: JSON.stringify({
+                "title": title,
+                "desc": desc
+            }),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })        
+
+        if(response.ok)
+            dispatch({type: 'EDIT_TASK', payload: {
+                "id": id,
+                "title": title,
+                "desc": desc
+            }})  
+
         setModal({opened: false, taskid: 0, type: 'none'})
     }
     
@@ -103,14 +156,25 @@ function TasksContextProvider (props) {
         setModal({opened: false, taskid: 0, type: 'none'})
     } 
     
-    //TODO: Removing all the tasks 
-    function removeAllTasks(){
-        setTasks([])
+    //Removing all the tasks 
+    async function removeAllTasks(){
+        const response = await fetch("/api/tasks/", {
+            method: "DELETE"
+        })
+
+        const json = await response.json()
+
+        if(response.ok){
+            dispatch({type: 'DELETE_ALL_TASKS', payload: json})
+        }                
+        
         setModal({opened: false, taskid: 0, type: 'none'})
     }
 
     //TODO: Sorting the tasks by criteria
-    function sortTasks(type) {        
+    function sortTasks(type) {    
+        
+        dispatch({type: 'SORT_TASKS', payload: type})  
 
         switch(type){
             case "alphAsc":
