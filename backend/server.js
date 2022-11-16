@@ -23,8 +23,8 @@ app.use("/api/tasks", taskRoutes)
 mongoose.connect(process.env.MONGO_URI)
     .then(() => {
         //Listen for requests
-        app.listen(process.env.PORT, () => {
-            console.log('Connected to DB & listening on port', process.env.PORT)
+        app.listen(4000, () => {
+            console.log('Connected to DB & listening on port', 4000)
         })
     })
     .catch((error) => console.log(error))
